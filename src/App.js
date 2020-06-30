@@ -6,16 +6,11 @@ import cours from "./courses";
 //styles
 import styles from "./styles";
 
+//components
+import CoursesList from "./components/CoursesList";
+
 function App() {
   console.log(cours[0].name);
-
-  const coursList = cours.map((cours) => (
-    <div style={styles.cours} key={cours.id}>
-      <img src={cours.image} alt={cours.name} style={styles.coursImage} />
-      <p style={styles.text}>{cours.name}</p>
-      <p style={styles.text}>{cours.price} KD</p>
-    </div>
-  ));
 
   return (
     <div>
@@ -28,7 +23,7 @@ function App() {
           style={styles.ballerinaImage}
         />
       </div>
-      <div style={styles.list}>{coursList}</div>
+      <CoursesList />
     </div>
   );
 }
