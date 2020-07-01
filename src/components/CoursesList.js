@@ -1,7 +1,7 @@
 import React from "react";
 
 //styles
-import styles from "../styles";
+import { ListWrapper } from "../styles";
 
 //Data
 import cours from "../courses";
@@ -14,7 +14,7 @@ const CoursesList = () => {
     <CoursItem cours={cours} key={cours.id} />
   ));
 
-  return <div style={styles.list}>{coursList}</div>;
+  return <ListWrapper> {coursList} </ListWrapper>;
 };
 
 export default CoursesList;
