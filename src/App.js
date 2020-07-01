@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 //Data
 import cours from "./courses";
@@ -7,6 +7,7 @@ import cours from "./courses";
 import {
   Description,
   GlobalStyle,
+  ThemeButton,
   Title,
   ListWrapper,
   BallerinaImage,
@@ -23,23 +24,38 @@ function App() {
     mainColor: "#fdd365", // main font color
     backgroundColor: "#856c8b", // main background color
     gold: "#fdd365",
+
+    light: {
+      mainColor: "#242424", // main font color
+      backgroundColor: "#fefafb", // main background color
+      gold: "#fdd365",
+    },
+    dark: {
+      mainColor: "#fdd365", // main font color
+      backgroundColor: "#856c8b", // main background color
+      gold: "#fdd365",
+    },
   };
+  const [currentTheme, setCurrentTheme] = useState("light");
+  const toggleTheme = () =>
+    setCurrentTheme(currentTheme === "light" ? "dark" : "light");
 
   return (
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={theme[currentTheme]}>
       <GlobalStyle />
-      <div>
-        <Title> Secret Art Courses </Title>
-        <Description> Memory In Another way </Description>
+      <ThemeButton onClick={toggleTheme}>Dark Mode</ThemeButton>
 
-        <BallerinaImage
-          alt="ballerina1"
-          src="https://rlv.zcache.com/dancing_ballerina_pencil_drawing_postcard-r4f04d1ab983143c789ac1ec8acd63a38_vgbaq_8byvr_704.jpg"
-        />
+      <Title> Secret Art Courses </Title>
+      <Description> Memory In Another way </Description>
 
-        <CoursesList />
-      </div>
+      <BallerinaImage
+        alt="ballerina1"
+        src="https://rlv.zcache.com/dancing_ballerina_pencil_drawing_postcard-r4f04d1ab983143c789ac1ec8acd63a38_vgbaq_8byvr_704.jpg"
+      />
+
+      <CoursesList />
     </ThemeProvider>
   );
 }
+
 export default App;
