@@ -43,7 +43,9 @@ function App() {
   return (
     <ThemeProvider theme={theme[currentTheme]}>
       <GlobalStyle />
-      <ThemeButton onClick={toggleTheme}>Dark Mode</ThemeButton>
+      <ThemeButton onClick={toggleTheme}>
+        {theme === "light" ? "Dark" : "Light"} Mode
+      </ThemeButton>
 
       <Title> Secret Art Courses </Title>
       <Description> Memory In Another way </Description>
