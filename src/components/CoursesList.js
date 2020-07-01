@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 //styles
 import { ListWrapper } from "../styles";
@@ -10,8 +10,15 @@ import cours from "../courses";
 import CoursItem from "./CoursItem";
 
 const CoursesList = () => {
-  const coursList = cours.map((cours) => (
-    <CoursItem cours={cours} key={cours.id} />
+  const [_cours, setCours] = useState(cours);
+
+  const deleteCours = (coursId) => {
+    const updatedCours = _cours.filter((cours) => cours.id !== +coursId);
+    setCours(updatedCours);
+  };
+
+  const coursList = _cours.map((cours) => (
+    <CoursItem cours={cours} key={cours.id} deleteCours={deleteCours} />
   ));
 
   return <ListWrapper> {coursList} </ListWrapper>;

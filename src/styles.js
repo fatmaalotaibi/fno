@@ -47,8 +47,12 @@ const GlobalStyle = createGlobalStyle`
   background-color: ${(props) => props.theme.backgroundColor}
 }
 `;
+const DeleteButtonStyled = styled.p`
+  color: ${(props) => props.theme.red};
+`;
 
 export {
+  DeleteButtonStyled,
   Description,
   ThemeButton,
   GlobalStyle,

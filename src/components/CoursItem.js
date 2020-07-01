@@ -1,13 +1,21 @@
 import React from "react";
 //styles
-import styles, { CoursWrapper } from "../styles";
+import styles, { CoursWrapper, DeleteButtonStyled } from "../styles";
+import cours from "../courses";
 
 const CoursItem = (props) => {
+  const cours = props.cours;
+
+  const handleDelete = () => {
+    props.deleteCours(cours.id);
+  };
+
   return (
     <CoursWrapper>
-      <img src={props.cours.image} alt={props.cours.name} />
-      <p>{props.cours.name}</p>
-      <p className="cours-price">{props.cours.price} KD</p>
+      <img src={cours.image} alt={cours.name} />
+      <p>{cours.name}</p>
+      <p className="cours-price">{cours.price} KD</p>
+      <DeleteButtonStyled onClick={handleDelete}>Delete</DeleteButtonStyled>
     </CoursWrapper>
   );
 };
