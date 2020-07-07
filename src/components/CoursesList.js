@@ -3,25 +3,29 @@ import React, { useState } from "react";
 //styles
 import { ListWrapper } from "../styles";
 
-//Data
-import cours from "../courses";
-
 //components
-import CoursItem from "./CoursItem";
+import CourseItem from "./CourseItem";
+import SearchBar from "./SearchBar";
 
-const CoursesList = () => {
-  const [_cours, setCours] = useState(cours);
+const CoursesList = (props) => {
+  const [query, setQuery] = useState("");
 
-  const deleteCours = (coursId) => {
-    const updatedCours = _cours.filter((cours) => cours.id !== +coursId);
-    setCours(updatedCours);
-  };
-
-  const coursList = _cours.map((cours) => (
-    <CoursItem cours={cours} key={cours.id} deleteCours={deleteCours} />
-  ));
-
-  return <ListWrapper> {coursList} </ListWrapper>;
+  const courseList = props.course
+    .filter((course) => course.name.includes(query))
+    .map((course) => (
+      <CourseItem
+        course={course}
+        deleteCourse={props.deleteCourse}
+        selectCourse={props.selectCourse}
+        key={course.id}
+      />
+    ));
+  return (
+    <>
+      <SearchBar setQuery={setQuery} />
+      <ListWrapper>{courseList} </ListWrapper>
+    </>
+  );
 };
 
 export default CoursesList;

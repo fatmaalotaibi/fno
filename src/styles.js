@@ -1,6 +1,6 @@
 import styled, { createGlobalStyle } from "styled-components";
 
-const CoursWrapper = styled.div`
+export const CourseWrapper = styled.div`
   margin: 20px;
   img {
     width: 200px;
@@ -14,7 +14,8 @@ const CoursWrapper = styled.div`
     }
   }
 `;
-const ThemeButton = styled.button`
+
+export const ThemeButton = styled.button`
   font-size: 1em;
   margin: 1.25em;
   padding: 0.25em 1em;
@@ -23,41 +24,45 @@ const ThemeButton = styled.button`
   color: ${(props) => props.theme.backgroundColor};
 `;
 
-const Title = styled.h1`
+export const Title = styled.h1`
   text-align: center;
   color: #e0dede;
 `;
-const Description = styled.h4`
+export const Description = styled.h4`
   text-align: center;
 `;
-const BallerinaImage = styled.img`
+export const BallerinaImage = styled.img`
   display: block;
   margin-left: auto;
   margin-right: auto;
   width: 50%;
 `;
-const ListWrapper = styled.div`
+export const ListWrapper = styled.div`
   align-items: center;
   justify-content: center;
   display: flex;
 `;
-const GlobalStyle = createGlobalStyle`
+export const GlobalStyle = createGlobalStyle`
  body{
   color: ${(props) => props.theme.mainColor};
   background-color: ${(props) => props.theme.backgroundColor}
 }
 `;
-const DeleteButtonStyled = styled.p`
+export const DeleteButtonStyled = styled.p`
   color: ${(props) => props.theme.red};
 `;
+export const DetailWrapper = styled.div`
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+`;
+export const SearchBarStyled = styled.input`
+  height: 20px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
 
-export {
-  DeleteButtonStyled,
-  Description,
-  ThemeButton,
-  GlobalStyle,
-  Title,
-  ListWrapper,
-  BallerinaImage,
-  CoursWrapper,
-};
+  background-color: #f5f5f5;
+`;
