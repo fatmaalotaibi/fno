@@ -14,7 +14,7 @@ const CourseItem = (props) => {
   return (
     <>
       <CourseWrapper>
-        <Link to={`/courses/${course.id}`}>
+        <Link to={`/courses/${course.slug}`}>
           <img src={course.image} alt={course.name} />
         </Link>
         <p>{course.name}</p>

@@ -55,7 +55,11 @@ export const DetailWrapper = styled.div`
   display: block;
   margin-left: auto;
   margin-right: auto;
-  width: 50%;
+
+  img {
+    width: 50%;
+    height: 30%;
+  }
 `;
 export const SearchBarStyled = styled.input`
   height: 20px;

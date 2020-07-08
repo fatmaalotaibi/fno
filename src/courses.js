@@ -2,6 +2,7 @@ const courses = [
   {
     id: 1,
     name: "water color course",
+    slug: "water-color-course",
     price: 95,
     description: "the course length 5days including the tools",
     image:
@@ -10,6 +11,7 @@ const courses = [
   {
     id: 2,
     name: "oil pastel painting course",
+    slug: "oil-pastel-painting-coursee",
     price: 100,
     description: "the course length 5days including the tools",
     image: "https://cf.shopee.ph/file/265c419549ac2855d05e22c3d8f71885",
@@ -17,6 +19,7 @@ const courses = [
   {
     id: 3,
     name: "panpastel painting course",
+    slug: "panpastel-painting-course",
     price: 120,
     description: "the course length 5days including the tools",
     image:
@@ -24,7 +27,9 @@ const courses = [
   },
   {
     id: 4,
+
     name: "pencil drawing course",
+    slug: "pencil-drawing-course",
     price: 95,
     description: "the course length 5days including the tools",
     image:

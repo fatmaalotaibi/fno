@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, Redirect } from "react-router-dom";
 
 //style
 import { DetailWrapper } from "../styles";
@@ -8,9 +8,10 @@ import { DetailWrapper } from "../styles";
 import DeleteButton from "./Buttons/DeleteButton";
 
 const CourseDetail = (props) => {
-  const { courseId } = useParams();
+  const { courseSlug } = useParams();
 
-  const course = props.course.find((course) => course.id === +courseId);
+  const course = props.course.find((course) => course.slug === courseSlug);
+  if (!course) return <Redirect to="/courses" />;
 
   return (
     <DetailWrapper>
@@ -18,7 +19,7 @@ const CourseDetail = (props) => {
         <p>Back to courses </p>
       </Link>
       <h1>{course.name}</h1>
-      <img src={course.image} alt={course.name} />
+      <img src={course.image} alt={course.id} />
       <p>{course.description}</p>
       <p>{course.price}</p>
       <DeleteButton courseId={course.id} deleteCourse={props.deleteCourse} />

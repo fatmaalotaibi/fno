@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import courses from "./courses";
 
 //styles
+import logo from "./images.png";
 import { GlobalStyle, ThemeButton } from "./styles";
 import { ThemeProvider } from "styled-components";
 
@@ -42,21 +43,15 @@ function App() {
     setCourse(updatedCourse);
   };
 
-  const selectCourse = (courseId) => {
-    const selectedCourse = courses.find((course) => course.id === courseId);
-    setCourse(selectedCourse);
-  };
-
   const handeleToggle = () =>
     setCurrentTheme(currentTheme === "light" ? "dark" : "light");
-
-  const handleDelete = () => {
-    alert(`Delete cours #${courses.id}`);
-  };
 
   return (
     <ThemeProvider theme={theme[currentTheme]}>
       <GlobalStyle />
+      <Link to="/" style={{ margin: 10, float: "right" }}>
+        <img src={logo} width="50 " />
+      </Link>
       <Link to="/courses" style={{ margin: 10, float: "right" }}>
         {" "}
         Courses{" "}
@@ -65,7 +60,7 @@ function App() {
         {currentTheme === "light" ? "Dark" : "Light"} Mode
       </ThemeButton>
       <Switch>
-        <Route path="/coursrs/:courseId">
+        <Route path="/courses/:courseSlug">
           <CourseDetail course={_course} deleteCourse={deleteCourse} />
         </Route>
 
