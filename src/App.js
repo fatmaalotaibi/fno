@@ -1,21 +1,18 @@
 import React, { useState } from "react";
+import { Route, Switch } from "react-router";
+import { Link } from "react-router-dom";
 
 //Data
 import courses from "./courses";
 
 //styles
-import {
-  Description,
-  GlobalStyle,
-  ThemeButton,
-  Title,
-  BallerinaImage,
-} from "./styles";
+import { GlobalStyle, ThemeButton } from "./styles";
 import { ThemeProvider } from "styled-components";
 
 //components
 import CoursesList from "./components/CoursesList";
 import CourseDetail from "./components/CourseDetail";
+import Home from "./components/HomePage";
 
 function App() {
   const theme = {
@@ -31,20 +28,18 @@ function App() {
     },
     dark: {
       mainColor: "#fdd365", // main font color
-      backgroundColor: "#856c8b", // main background color
+      backgroundColor: "#393e46", // main background color
       gold: "#fdd365",
       red: "#d92027",
     },
   };
 
   const [currentTheme, setCurrentTheme] = useState("light");
-  const [course, setCourse] = useState(null);
-  const [_course, setCourses] = useState(course);
+  const [_course, setCourse] = useState(courses);
 
   const deleteCourse = (courseId) => {
     const updatedCourse = _course.filter((course) => course.id !== +courseId);
-    setCourses(updatedCourse);
-    setCourses(null);
+    setCourse(updatedCourse);
   };
 
   const selectCourse = (courseId) => {
@@ -59,37 +54,28 @@ function App() {
     alert(`Delete cours #${courses.id}`);
   };
 
-  const setView = () =>
-    course ? (
-      <CourseDetail
-        course={course}
-        deleteCourse={deleteCourse}
-        setCourse={setCourse}
-      />
-    ) : (
-      <CoursesList
-        course={_course}
-        deleteCourse={deleteCourse}
-        selectCourse={selectCourse}
-      />
-    );
-
   return (
     <ThemeProvider theme={theme[currentTheme]}>
       <GlobalStyle />
+      <Link to="/courses" style={{ margin: 10, float: "right" }}>
+        {" "}
+        Courses{" "}
+      </Link>
       <ThemeButton onClick={handeleToggle}>
         {currentTheme === "light" ? "Dark" : "Light"} Mode
       </ThemeButton>
-      <div>
-        <Title> Secret Art Courses </Title>
-        <Description> Memory In Another way </Description>
+      <Switch>
+        <Route path="/coursrs/:courseId">
+          <CourseDetail course={_course} deleteCourse={deleteCourse} />
+        </Route>
 
-        <BallerinaImage
-          alt="ballerina1"
-          src="https://rlv.zcache.com/dancing_ballerina_pencil_drawing_postcard-r4f04d1ab983143c789ac1ec8acd63a38_vgbaq_8byvr_704.jpg"
-        />
-      </div>
-      {setView()}
+        <Route path="/courses">
+          <CoursesList course={_course} deleteCourse={deleteCourse} />
+        </Route>
+        <Route exact path="/">
+          <Home />
+        </Route>
+      </Switch>
     </ThemeProvider>
   );
 }

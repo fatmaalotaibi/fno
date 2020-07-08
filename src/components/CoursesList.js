@@ -11,12 +11,11 @@ const CoursesList = (props) => {
   const [query, setQuery] = useState("");
 
   const courseList = props.course
-    .filter((course) => course.name.includes(query))
+    .filter((course) => course.name.toLowerCase().includes(query.toLowerCase()))
     .map((course) => (
       <CourseItem
         course={course}
         deleteCourse={props.deleteCourse}
-        selectCourse={props.selectCourse}
         key={course.id}
       />
     ));

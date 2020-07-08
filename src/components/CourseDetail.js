@@ -1,16 +1,22 @@
 import React from "react";
+import { Link, useParams } from "react-router-dom";
 
 //style
 import { DetailWrapper } from "../styles";
 
 //components
 import DeleteButton from "./Buttons/DeleteButton";
+
 const CourseDetail = (props) => {
-  const course = props.course;
+  const { courseId } = useParams();
+
+  const course = props.course.find((course) => course.id === +courseId);
 
   return (
     <DetailWrapper>
-      <p onClick={() => props.setCourse()}>Back to courses </p>
+      <Link to="/courses">
+        <p>Back to courses </p>
+      </Link>
       <h1>{course.name}</h1>
       <img src={course.image} alt={course.name} />
       <p>{course.description}</p>

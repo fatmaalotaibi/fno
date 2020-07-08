@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 //styles
 import { CourseWrapper } from "../styles";
@@ -13,11 +14,9 @@ const CourseItem = (props) => {
   return (
     <>
       <CourseWrapper>
-        <img
-          src={course.image}
-          alt={course.name}
-          onClick={() => props.selectCourse(course.id)}
-        />
+        <Link to={`/courses/${course.id}`}>
+          <img src={course.image} alt={course.name} />
+        </Link>
         <p>{course.name}</p>
         <p className="course-price">{course.price} KD</p>
 
