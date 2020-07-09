@@ -8,22 +8,18 @@ import { ListWrapper } from "../styles";
 import CourseItem from "./CourseItem";
 import SearchBar from "./SearchBar";
 
-const CoursesList = (props) => {
+const CoursesList = ({ course, deleteCourse }) => {
   const [query, setQuery] = useState("");
 
-  const courseList = props.course
+  const courseList = course
     .filter((course) => course.name.toLowerCase().includes(query.toLowerCase()))
     .map((course) => (
-      <CourseItem
-        course={course}
-        deleteCourse={props.deleteCourse}
-        key={course.id}
-      />
+      <CourseItem course={course} deleteCourse={deleteCourse} key={course.id} />
     ));
   return (
     <>
       <SearchBar setQuery={setQuery} />
-      <ListWrapper>{courseList} </ListWrapper>
+      <ListWrapper className="row">{courseList} </ListWrapper>
     </>
   );
 };

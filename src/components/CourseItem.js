@@ -8,19 +8,17 @@ import { CourseWrapper } from "../styles";
 
 import DeleteButton from "./Buttons/DeleteButton";
 
-const CourseItem = (props) => {
-  const course = props.course;
-
+const CourseItem = ({ course, deleteCourse }) => {
   return (
     <>
-      <CourseWrapper>
+      <CourseWrapper className="col-lg-3 col-md-4 col-sm-6">
         <Link to={`/courses/${course.slug}`}>
           <img src={course.image} alt={course.name} />
         </Link>
         <p>{course.name}</p>
         <p className="course-price">{course.price} KD</p>
 
-        <DeleteButton courseId={course.id} deleteCourse={props.deleteCourse} />
+        <DeleteButton courseId={course.id} deleteCourse={deleteCourse} />
       </CourseWrapper>
     </>
   );

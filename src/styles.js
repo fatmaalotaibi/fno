@@ -1,5 +1,7 @@
 import styled, { createGlobalStyle } from "styled-components";
 
+import { Link, NavLink } from "react-router-dom";
+
 export const CourseWrapper = styled.div`
   margin: 20px;
   img {
@@ -9,15 +11,21 @@ export const CourseWrapper = styled.div`
   p {
     text-align: center;
 
-    .cours-price {
+    &.cours-price {
       color: ${(props) => props.theme.gold};
     }
+  }
+`;
+export const NavItem = styled(NavLink)`
+  color: ${(props) => props.theme.mainColor};
+
+  &.active {
+    color: ${(props) => props.theme.gold};
   }
 `;
 
 export const ThemeButton = styled.button`
   font-size: 1em;
-  margin: 1.25em;
   padding: 0.25em 1em;
   border-radius: 3px;
   background-color: ${(props) => props.theme.mainColor};
@@ -69,4 +77,13 @@ export const SearchBarStyled = styled.input`
   width: 50%;
 
   background-color: #f5f5f5;
+`;
+
+export const Logo = styled(Link)`
+  padding: 0.75em;
+  img {
+    width: 50px;
+    margin: 10;
+    float: "left";
+  }
 `;

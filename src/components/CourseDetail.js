@@ -7,10 +7,10 @@ import { DetailWrapper } from "../styles";
 //components
 import DeleteButton from "./Buttons/DeleteButton";
 
-const CourseDetail = (props) => {
+const CourseDetail = ({ courses, deleteCourse }) => {
   const { courseSlug } = useParams();
 
-  const course = props.course.find((course) => course.slug === courseSlug);
+  const course = courses.find((course) => course.slug === courseSlug);
   if (!course) return <Redirect to="/courses" />;
 
   return (
@@ -22,7 +22,7 @@ const CourseDetail = (props) => {
       <img src={course.image} alt={course.id} />
       <p>{course.description}</p>
       <p>{course.price}</p>
-      <DeleteButton courseId={course.id} deleteCourse={props.deleteCourse} />
+      <DeleteButton courseId={course.id} deleteCourse={deleteCourse} />
     </DetailWrapper>
   );
 };

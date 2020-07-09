@@ -1,19 +1,19 @@
 import React, { useState } from "react";
 import { Route, Switch } from "react-router";
-import { Link } from "react-router-dom";
 
 //Data
 import courses from "./courses";
 
 //styles
-import logo from "./images.png";
-import { GlobalStyle, ThemeButton } from "./styles";
+
+import { GlobalStyle } from "./styles";
 import { ThemeProvider } from "styled-components";
 
 //components
 import CoursesList from "./components/CoursesList";
 import CourseDetail from "./components/CourseDetail";
 import Home from "./components/HomePage";
+import NavBar from "./components/NavBar";
 
 function App() {
   const theme = {
@@ -36,10 +36,10 @@ function App() {
   };
 
   const [currentTheme, setCurrentTheme] = useState("light");
-  const [_course, setCourse] = useState(courses);
+  const [_courses, setCourse] = useState(courses);
 
   const deleteCourse = (courseId) => {
-    const updatedCourse = _course.filter((course) => course.id !== +courseId);
+    const updatedCourse = _courses.filter((course) => course.id !== +courseId);
     setCourse(updatedCourse);
   };
 
@@ -49,23 +49,14 @@ function App() {
   return (
     <ThemeProvider theme={theme[currentTheme]}>
       <GlobalStyle />
-      <Link to="/" style={{ margin: 10, float: "right" }}>
-        <img src={logo} width="50 " />
-      </Link>
-      <Link to="/courses" style={{ margin: 10, float: "right" }}>
-        {" "}
-        Courses{" "}
-      </Link>
-      <ThemeButton onClick={handeleToggle}>
-        {currentTheme === "light" ? "Dark" : "Light"} Mode
-      </ThemeButton>
+      <NavBar currentTheme={currentTheme} handeleToggle={handeleToggle} />
       <Switch>
         <Route path="/courses/:courseSlug">
-          <CourseDetail course={_course} deleteCourse={deleteCourse} />
+          <CourseDetail courses={_courses} deleteCourse={deleteCourse} />
         </Route>
 
         <Route path="/courses">
-          <CoursesList course={_course} deleteCourse={deleteCourse} />
+          <CoursesList course={_courses} deleteCourse={deleteCourse} />
         </Route>
         <Route exact path="/">
           <Home />
