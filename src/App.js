@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Route, Switch } from "react-router";
+import slugify from "react-slugify";
 
 //Data
 import courses from "./courses";
@@ -35,16 +36,12 @@ function App() {
     },
   };
   const createCourse = (newCourse) => {
-    const updatedCourses = [..._courses, newCourse];
-    setCourse(updatedCourses);
+    newCourse.id = _courses[_courses.length - 1].id + 1;
+    newCourse.slug = slugify(newCourse.name);
+    setCourse([...courses, newCourse]);
   };
   const [currentTheme, setCurrentTheme] = useState("light");
   const [_courses, setCourse] = useState(courses);
-
-  const deleteCourse = (courseId) => {
-    const updatedCourse = _courses.filter((course) => course.id !== +courseId);
-    setCourse(updatedCourse);
-  };
 
   const handeleToggle = () =>
     setCurrentTheme(currentTheme === "light" ? "dark" : "light");
@@ -55,15 +52,11 @@ function App() {
       <NavBar currentTheme={currentTheme} handeleToggle={handeleToggle} />
       <Switch>
         <Route path="/courses/:courseSlug">
-          <CourseDetail courses={_courses} deleteCourse={deleteCourse} />
+          <CourseDetail />
         </Route>
 
         <Route path="/courses">
-          <CoursesList
-            course={_courses}
-            createCourse={createCourse}
-            deleteCourse={deleteCourse}
-          />
+          <CoursesList course={_courses} createCourse={createCourse} />
         </Route>
         <Route exact path="/">
           <Home />

@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import Modal from "react-modal";
 
+//stores
+import courseStore from "../../courseStore";
+
 //Style
 import { CreateButtonStyled } from "../../styles";
 
@@ -15,7 +18,7 @@ const customStyles = {
   },
 };
 
-const CoursesModal = ({ isOpen, closeModal, createCourse }) => {
+const CoursesModal = ({ isOpen, closeModal }) => {
   const [course, setCourse] = useState({
     name: "",
     price: 0,
@@ -27,7 +30,7 @@ const CoursesModal = ({ isOpen, closeModal, createCourse }) => {
   };
   const handleSubmit = (event) => {
     event.preventDefault();
-    createCourse(course);
+    courseStore.createCourse(course);
     console.log(course);
     closeModal();
   };
@@ -45,6 +48,7 @@ const CoursesModal = ({ isOpen, closeModal, createCourse }) => {
           <div className="col-6" name="name">
             <label>Name</label>
             <input
+              required
               type="text"
               name="name"
               className="form-control"
@@ -54,6 +58,7 @@ const CoursesModal = ({ isOpen, closeModal, createCourse }) => {
           <div className="col-6">
             <label>Price</label>
             <input
+              required
               type="number"
               min="35"
               className="form-control"
@@ -65,6 +70,7 @@ const CoursesModal = ({ isOpen, closeModal, createCourse }) => {
         <div className="form-group">
           <label>Description</label>
           <input
+            required
             type="text"
             className="form-control"
             name="description"
@@ -74,6 +80,7 @@ const CoursesModal = ({ isOpen, closeModal, createCourse }) => {
         <div className="form-group">
           <label>Image</label>
           <input
+            required
             type="text"
             className="form-control"
             name="image"

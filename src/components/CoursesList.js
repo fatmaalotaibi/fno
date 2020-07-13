@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { observer } from "mobx-react";
 
 //styles
 import { ListWrapper } from "../styles";
@@ -9,14 +9,15 @@ import CourseItem from "./CourseItem";
 import SearchBar from "./SearchBar";
 import AddButton from "./Buttons/addButton";
 
-const CoursesList = ({ course, deleteCourse, createCourse }) => {
+//stores
+import courseStore from "../courseStore";
+
+const CoursesList = ({ createCourse }) => {
   const [query, setQuery] = useState("");
 
-  const courseList = course
+  const courseList = courseStore.courses
     .filter((course) => course.name.toLowerCase().includes(query.toLowerCase()))
-    .map((course) => (
-      <CourseItem course={course} deleteCourse={deleteCourse} key={course.id} />
-    ));
+    .map((course) => <CourseItem course={course} key={course.id} />);
   return (
     <>
       <SearchBar setQuery={setQuery} />
@@ -26,4 +27,4 @@ const CoursesList = ({ course, deleteCourse, createCourse }) => {
   );
 };
 
-export default CoursesList;
+export default observer(CoursesList);

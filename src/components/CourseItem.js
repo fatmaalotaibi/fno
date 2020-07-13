@@ -5,10 +5,9 @@ import { Link } from "react-router-dom";
 import { CourseWrapper } from "../styles";
 
 //Components
-
 import DeleteButton from "./Buttons/DeleteButton";
 
-const CourseItem = ({ course, deleteCourse }) => {
+const CourseItem = ({ course }) => {
   return (
     <>
       <CourseWrapper className="col-lg-3 col-md-4 col-sm-6">
@@ -18,7 +17,7 @@ const CourseItem = ({ course, deleteCourse }) => {
         <p>{course.name}</p>
         <p className="course-price">{course.price} KD</p>
 
-        <DeleteButton courseId={course.id} deleteCourse={deleteCourse} />
+        <DeleteButton courseId={course.id} />
       </CourseWrapper>
     </>
   );
