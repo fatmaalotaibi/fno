@@ -9,7 +9,7 @@ export const CourseWrapper = styled.div`
     height: 200px;
   }
   p {
-    text-align: center;
+    text-align: left;
 
     &.cours-price {
       color: ${(props) => props.theme.gold};
@@ -65,7 +65,7 @@ export const DetailWrapper = styled.div`
   margin-right: auto;
 
   img {
-    width: 50%;
+    width: 30%;
     height: 30%;
   }
 `;
@@ -85,5 +85,14 @@ export const Logo = styled(Link)`
     width: 50px;
     margin: 10;
     float: "left";
+  }
+`;
+export const CreateButtonStyled = styled.button`
+  color: ${(props) => props.theme.backgroundColor};
+  background-color: ${(props) => props.theme.mainColor};
+
+  &:hover {
+    color: ${(props) => props.theme.mainColor};
+    background-color: ${(props) => props.theme.backgroundColor};
   }
 `;

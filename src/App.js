@@ -34,7 +34,10 @@ function App() {
       red: "#d92027",
     },
   };
-
+  const createCourse = (newCourse) => {
+    const updatedCourses = [..._courses, newCourse];
+    setCourse(updatedCourses);
+  };
   const [currentTheme, setCurrentTheme] = useState("light");
   const [_courses, setCourse] = useState(courses);
 
@@ -56,7 +59,11 @@ function App() {
         </Route>
 
         <Route path="/courses">
-          <CoursesList course={_courses} deleteCourse={deleteCourse} />
+          <CoursesList
+            course={_courses}
+            createCourse={createCourse}
+            deleteCourse={deleteCourse}
+          />
         </Route>
         <Route exact path="/">
           <Home />

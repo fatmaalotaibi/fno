@@ -7,8 +7,9 @@ import { ListWrapper } from "../styles";
 //components
 import CourseItem from "./CourseItem";
 import SearchBar from "./SearchBar";
+import AddButton from "./Buttons/addButton";
 
-const CoursesList = ({ course, deleteCourse }) => {
+const CoursesList = ({ course, deleteCourse, createCourse }) => {
   const [query, setQuery] = useState("");
 
   const courseList = course
@@ -20,6 +21,7 @@ const CoursesList = ({ course, deleteCourse }) => {
     <>
       <SearchBar setQuery={setQuery} />
       <ListWrapper className="row">{courseList} </ListWrapper>
+      <AddButton createCourse={createCourse} />
     </>
   );
 };
