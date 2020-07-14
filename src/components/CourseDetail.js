@@ -10,6 +10,7 @@ import DeleteButton from "./Buttons/DeleteButton";
 
 //stores
 import courseStore from "../courseStore";
+import UpdateButton from "./Buttons/UpdateButton";
 
 const CourseDetail = () => {
   const { courseSlug } = useParams();
@@ -29,6 +30,7 @@ const CourseDetail = () => {
       <p>{course.description}</p>
       <p>{course.price}</p>
       <DeleteButton courseId={course.id} />
+      <UpdateButton course={course} />
     </DetailWrapper>
   );
 };

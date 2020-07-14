@@ -18,20 +18,21 @@ const customStyles = {
   },
 };
 
-const CoursesModal = ({ isOpen, closeModal }) => {
-  const [course, setCourse] = useState({
-    name: "",
-    price: 0,
-    description: "",
-    image: "",
-  });
+const CoursesModal = ({ isOpen, closeModal, oldCourse }) => {
+  const [course, setCourse] = useState(
+    oldCourse ?? {
+      name: "",
+      price: "",
+      description: "",
+      image: "",
+    }
+  );
   const handleChange = (event) => {
     setCourse({ ...course, [event.target.name]: event.target.value });
   };
   const handleSubmit = (event) => {
     event.preventDefault();
-    courseStore.createCourse(course);
-    console.log(course);
+    courseStore[oldCourse ? "updateCourse" : "createCourse"](course);
     closeModal();
   };
 
@@ -53,6 +54,7 @@ const CoursesModal = ({ isOpen, closeModal }) => {
               name="name"
               className="form-control"
               onChange={handleChange}
+              value={course.name}
             />
           </div>
           <div className="col-6">
@@ -64,6 +66,7 @@ const CoursesModal = ({ isOpen, closeModal }) => {
               className="form-control"
               name="price"
               onChange={handleChange}
+              value={course.price}
             />
           </div>
         </div>
@@ -75,6 +78,7 @@ const CoursesModal = ({ isOpen, closeModal }) => {
             className="form-control"
             name="description"
             onChange={handleChange}
+            value={course.description}
           />
         </div>
         <div className="form-group">
@@ -85,10 +89,11 @@ const CoursesModal = ({ isOpen, closeModal }) => {
             className="form-control"
             name="image"
             onChange={handleChange}
+            value={course.image}
           />
         </div>
-        <CreateButtonStyled className="btn float-right">
-          Create
+        <CreateButtonStyled className="btn float-right" type="submit">
+          {oldCourse ? "Update" : "Create"}
         </CreateButtonStyled>
       </form>
     </Modal>

@@ -1,11 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { observer } from "mobx-react";
 
 //styles
 import { CourseWrapper } from "../styles";
 
 //Components
 import DeleteButton from "./Buttons/DeleteButton";
+import UpdateButton from "./Buttons/UpdateButton";
 
 const CourseItem = ({ course }) => {
   return (
@@ -16,11 +18,11 @@ const CourseItem = ({ course }) => {
         </Link>
         <p>{course.name}</p>
         <p className="course-price">{course.price} KD</p>
-
+        <UpdateButton course={course} />
         <DeleteButton courseId={course.id} />
       </CourseWrapper>
     </>
   );
 };
 
-export default CourseItem;
+export default observer(CourseItem);

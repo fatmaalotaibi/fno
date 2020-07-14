@@ -96,3 +96,6 @@ export const CreateButtonStyled = styled.button`
     background-color: ${(props) => props.theme.backgroundColor};
   }
 `;
+export const UpdateButtonStyled = styled.p`
+  color: ${(props) => props.theme.pink};
+`;
