@@ -5,7 +5,7 @@ import { BsPlusCircle } from "react-icons/bs";
 import CoursesModal from "../modals/CoursesModal";
 
 const AddButton = ({ createCourse }) => {
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
   const closeModal = () => setIsOpen(false);
   const openModal = () => setIsOpen(true);
 

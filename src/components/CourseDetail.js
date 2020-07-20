@@ -29,8 +29,8 @@ const CourseDetail = () => {
       <img src={course.image} alt={course.id} />
       <p>{course.description}</p>
       <p>{course.price}</p>
-      <DeleteButton courseId={course.id} />
       <UpdateButton course={course} />
+      <DeleteButton courseId={course.id} />
     </DetailWrapper>
   );
 };

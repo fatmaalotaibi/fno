@@ -45,6 +45,14 @@ function App() {
 
   const handeleToggle = () =>
     setCurrentTheme(currentTheme === "light" ? "dark" : "light");
+  // const savedTheme = localStorage.getItem("theme") ?? "light";
+  // const [currentTheme, setCurrentTheme] = useState(savedTheme);
+
+  // const handleToggle = () => {
+  //   const newTheme = currentTheme === "light" ? "dark" : "light";
+  //   setCurrentTheme(newTheme);
+  //   localStorage.setItem("theme", newTheme);
+  // };
 
   return (
     <ThemeProvider theme={theme[currentTheme]}>
@@ -54,7 +62,6 @@ function App() {
         <Route path="/courses/:courseSlug">
           <CourseDetail />
         </Route>
-
         <Route path="/courses">
           <CoursesList course={_courses} createCourse={createCourse} />
         </Route>
