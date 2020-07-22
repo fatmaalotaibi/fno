@@ -1,5 +1,4 @@
 import { decorate, observable } from "mobx";
-import slugify from "react-slugify";
 import axios from "axios";
 
 class CourseStore {
@@ -14,22 +13,39 @@ class CourseStore {
     }
   };
 
-  createCourse = (newCourse) => {
-    newCourse.id = this.courses[this.courses.length - 1].id + 1;
-    newCourse.slug = slugify(newCourse.name);
-    this.courses.push(newCourse);
+  createCourse = async (newCourse) => {
+    try {
+      const res = await axios.post("http://localhost:8000/courses", newCourse);
+      this.courses.push(res.data);
+    } catch (error) {
+      console.log("CourseStore -> creatCourse -> error", error);
+    }
   };
 
-  updateCourse = (updatedCourse) => {
-    const course = this.courses.find(
-      (course) => course.id === updatedCourse.id
-    );
-
-    for (const key in updatedCourse) course[key] = updatedCourse[key];
+  updateCourse = async (updatedCourse) => {
+    // update in the backend
+    try {
+      await axios.put(
+        `http://localhost:8000/courses/${updatedCourse.id}`,
+        updatedCourse
+      );
+      // update in the frontend
+      const course = this.courses.find(
+        (course) => course.id === updatedCourse.id
+      );
+      for (const key in updatedCourse) course[key] = updatedCourse[key];
+    } catch (error) {
+      console.log("CourseStore -> updateCourse -> error", error);
+    }
   };
 
-  deleteCourse = (courseId) => {
-    this.courses = this.courses.filter((course) => course.id !== +courseId);
+  deleteCourse = async (courseId) => {
+    try {
+      await axios.delete(`http://localhost:8000/courses/${courseId}`);
+      this.courses = this.courses.filter((course) => course.id !== +courseId);
+    } catch (error) {
+      console.log("CourseStore -> deleteCourse -> error", error);
+    }
   };
 }
 
