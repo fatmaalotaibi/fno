@@ -22,13 +22,18 @@ const CoursesModal = ({ isOpen, closeModal, oldCourse }) => {
   const [course, setCourse] = useState(
     oldCourse ?? {
       name: "",
-      price: "",
+      price: 0,
       description: "",
       image: "",
     }
   );
+
   const handleChange = (event) => {
     setCourse({ ...course, [event.target.name]: event.target.value });
+  };
+
+  const handleImage = (event) => {
+    setCourse({ ...course, image: event.target.file[0] });
   };
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -65,7 +70,7 @@ const CoursesModal = ({ isOpen, closeModal, oldCourse }) => {
               min="35"
               className="form-control"
               name="price"
-              onChange={handleChange}
+              onChange={handleImage}
               value={course.price}
             />
           </div>
@@ -85,11 +90,10 @@ const CoursesModal = ({ isOpen, closeModal, oldCourse }) => {
           <label>Image</label>
           <input
             required
-            type="text"
+            type="file"
             className="form-control"
             name="image"
             onChange={handleChange}
-            value={course.image}
           />
         </div>
         <CreateButtonStyled className="btn float-right" type="submit">

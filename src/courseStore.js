@@ -15,7 +15,9 @@ class CourseStore {
 
   createCourse = async (newCourse) => {
     try {
-      const res = await axios.post("http://localhost:8000/courses", newCourse);
+      const formData = new FormData();
+      for (const key in newCourse) formData.append(key, newCourse[key]);
+      const res = await axios.post("http://localhost:8000/courses", formData);
       this.courses.push(res.data);
     } catch (error) {
       console.log("CourseStore -> creatCourse -> error", error);
@@ -23,17 +25,20 @@ class CourseStore {
   };
 
   updateCourse = async (updatedCourse) => {
-    // update in the backend
     try {
+      // update in the backend
+      const formData = new FormData();
+      for (const key in updatedCourse) formData.append(key, updatedCourse[key]);
       await axios.put(
         `http://localhost:8000/courses/${updatedCourse.id}`,
-        updatedCourse
+        formData
       );
       // update in the frontend
       const course = this.courses.find(
         (course) => course.id === updatedCourse.id
       );
       for (const key in updatedCourse) course[key] = updatedCourse[key];
+      URL.createObjectURL(updatedCourse.image);
     } catch (error) {
       console.log("CourseStore -> updateCourse -> error", error);
     }
