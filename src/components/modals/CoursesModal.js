@@ -33,7 +33,7 @@ const CoursesModal = ({ isOpen, closeModal, oldCourse }) => {
   };
 
   const handleImage = (event) => {
-    setCourse({ ...course, image: event.target.file[0] });
+    setCourse({ ...course, image: event.target.files[0] });
   };
   const handleSubmit = (event) => {
     event.preventDefault();
