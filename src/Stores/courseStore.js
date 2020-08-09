@@ -1,5 +1,6 @@
 import { decorate, observable } from "mobx";
 import axios from "axios";
+import instance from "./instance";
 
 class CourseStore {
   courses = [];
@@ -17,7 +18,7 @@ class CourseStore {
     try {
       const formData = new FormData();
       for (const key in newCourse) formData.append(key, newCourse[key]);
-      const res = await axios.post("http://localhost:8000/courses", formData);
+      const res = await instance.post("/signup",, formData);
       this.courses.push(res.data);
     } catch (error) {
       console.log("CourseStore -> creatCourse -> error", error);

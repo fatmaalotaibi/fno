@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Modal from "react-modal";
 
 //stores
+import authStore from "../../Stores/authStore";
 
 //Style
 import { CreateButtonStyled } from "../../styles";
@@ -30,12 +31,11 @@ const SignupModal = ({ isOpen, closeModal }) => {
     setUser({ ...user, [event.target.name]: event.target.value });
   };
 
-  //   const handleSubmit = (event) => {
-  //     event.preventDefault();
-  //     userStore[oldCourse ? "updateUser" : "createUser"](user);
-  //     closeModal();
-  //   };
-
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    authStore.signup(user);
+    closeModal();
+  };
   return (
     <Modal
       isOpen={isOpen}
@@ -44,7 +44,7 @@ const SignupModal = ({ isOpen, closeModal }) => {
       contentLabel="Example Modal"
     >
       <h3>Signup</h3>
-      <form>
+      <form onSubmit={handleSubmit}>
         <div className="form-group">
           <label>Username</label>
           <input
