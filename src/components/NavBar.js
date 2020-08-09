@@ -4,6 +4,9 @@ import React from "react";
 import logo from "../images.png";
 import { Logo, ThemeButton, NavItem } from "../styles";
 
+//Components
+import SignupButton from "../components/Buttons/SignupButton";
+
 const NavBar = ({ handeleToggle, currentTheme }) => {
   return (
     <nav className="navbar navbar-expand-lg ">
@@ -32,7 +35,7 @@ const NavBar = ({ handeleToggle, currentTheme }) => {
             {" "}
             Courses{" "}
           </NavItem>
-
+          <SignupButton />
           <ThemeButton className="nav-item" onClick={handeleToggle}>
             {currentTheme === "light" ? "Dark" : "Light"} Mode
           </ThemeButton>

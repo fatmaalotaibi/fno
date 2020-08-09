@@ -17,7 +17,6 @@ const AddButton = ({ createCourse }) => {
         closeModal={closeModal}
         createCourse={createCourse}
       />
-      ;
     </div>
   );
 };
