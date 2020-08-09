@@ -9,7 +9,7 @@ import { DetailWrapper } from "../styles";
 import DeleteButton from "./Buttons/DeleteButton";
 
 //stores
-import courseStore from "../courseStore";
+import courseStore from "../Stores/courseStore";
 import UpdateButton from "./Buttons/UpdateButton";
 
 const CourseDetail = () => {

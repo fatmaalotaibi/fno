@@ -10,7 +10,7 @@ import SearchBar from "./SearchBar";
 import AddButton from "./Buttons/addButton";
 
 //stores
-import courseStore from "../courseStore";
+import courseStore from "../Stores/courseStore";
 
 const CoursesList = ({ createCourse }) => {
   const [query, setQuery] = useState("");

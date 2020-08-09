@@ -5,7 +5,7 @@ import { useHistory } from "react-router-dom";
 import { DeleteButtonStyled } from "../../styles";
 
 //stores
-import courseStore from "../../courseStore";
+import courseStore from "../../Stores/courseStore";
 
 const DeleteButton = ({ courseId }) => {
   const history = useHistory();

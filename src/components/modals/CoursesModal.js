@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Modal from "react-modal";
 
 //stores
-import courseStore from "../../courseStore";
+import courseStore from "../../Stores/courseStore";
 
 //Style
 import { CreateButtonStyled } from "../../styles";
