@@ -5,8 +5,9 @@ import { UpdateButtonStyled } from "../../styles";
 
 //components
 import CoursesModal from "../modals/CoursesModal";
+import InstituteModal from "../modals/InstituteModal";
 
-const UpdateButton = ({ course }) => {
+const UpdateButton = ({ course, institute }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const closeModal = () => setIsOpen(false);
@@ -14,11 +15,19 @@ const UpdateButton = ({ course }) => {
   return (
     <>
       <UpdateButtonStyled onClick={openModal}>Update</UpdateButtonStyled>
-      <CoursesModal
-        isOpen={isOpen}
-        closeModal={closeModal}
-        oldCourse={course}
-      />
+      {institute ? (
+        <InstituteModal
+          isOpen={isOpen}
+          closeModal={closeModal}
+          oldInstitute={institute}
+        />
+      ) : (
+        <CoursesModal
+          isOpen={isOpen}
+          closeModal={closeModal}
+          oldCourse={course}
+        />
+      )}
     </>
   );
 };

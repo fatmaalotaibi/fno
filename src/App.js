@@ -9,6 +9,10 @@ import { ThemeProvider } from "styled-components";
 import NavBar from "./components/NavBar";
 import Routes from "./Routes";
 
+//Stores
+import instituteStore from "./Stores/instituteStore";
+import courseStore from "./Stores/courseStore";
+
 const theme = {
   mainColor: "#fdd365", // main font color
   backgroundColor: "#856c8b", // main background color
@@ -41,8 +45,11 @@ function App() {
     <ThemeProvider theme={theme[currentTheme]}>
       <GlobalStyle />
       <NavBar currentTheme={currentTheme} handleToggle={handleToggle} />
-      {/* {true ? <h1> Loading </h1> : <Routes />} */}
-      <Routes />
+      {instituteStore.loading || courseStore.loading ? (
+        <h1> Loading </h1>
+      ) : (
+        <Routes />
+      )}
     </ThemeProvider>
   );
 }

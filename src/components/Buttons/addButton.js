@@ -3,8 +3,9 @@ import { BsPlusCircle } from "react-icons/bs";
 
 //components
 import CoursesModal from "../modals/CoursesModal";
+import InstituteModal from "../modals/InstituteModal";
 
-const AddButton = ({ createCourse }) => {
+const AddButton = ({ instituteId }) => {
   const [isOpen, setIsOpen] = useState(false);
   const closeModal = () => setIsOpen(false);
   const openModal = () => setIsOpen(true);
@@ -12,11 +13,15 @@ const AddButton = ({ createCourse }) => {
   return (
     <div>
       <BsPlusCircle className="float-right" size="2em" onClick={openModal} />
-      <CoursesModal
-        isOpen={isOpen}
-        closeModal={closeModal}
-        createCourse={createCourse}
-      />
+      {instituteId ? (
+        <CoursesModal
+          instituteId={instituteId}
+          isOpen={isOpen}
+          closeModal={closeModal}
+        />
+      ) : (
+        <InstituteModal isOpen={isOpen} closeModal={closeModal} />
+      )}
     </div>
   );
 };

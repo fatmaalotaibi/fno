@@ -6,11 +6,15 @@ import { DeleteButtonStyled } from "../../styles";
 
 //stores
 import courseStore from "../../Stores/courseStore";
+import instituteStore from "../../Stores/instituteStore";
 
-const DeleteButton = ({ courseId }) => {
+const DeleteButton = ({ courseId, instituteId }) => {
   const history = useHistory();
 
-  const handleDelete = () => courseStore.deleteCourse(courseId);
+  const handleDelete = () => {
+    if (courseId) courseStore.deleteCourse(courseId);
+    else instituteStore.deleteInstitute(instituteId);
+  };
 
   return (
     <div>

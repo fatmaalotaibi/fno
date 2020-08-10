@@ -4,11 +4,13 @@ import instance from "./instance";
 
 class CourseStore {
   courses = [];
+  loading = true;
 
   fetchCourses = async () => {
     try {
       const res = await axios.get("http://localhost:8000/courses");
       this.courses = res.data;
+      this.loading = false;
     } catch (err) {
       console.log("CourseStore -> fetchCourse -> error", err);
     }
@@ -18,7 +20,10 @@ class CourseStore {
     try {
       const formData = new FormData();
       for (const key in newCourse) formData.append(key, newCourse[key]);
-      const res = await instance.post("/signup", formData);
+      const res = await axios.post(
+        `http://localhost:8000/institutes/${newCourse.instituteId}/courses`,
+        formData
+      );
       this.courses.push(res.data);
     } catch (error) {
       console.log("CourseStore -> creatCourse -> error", error);
@@ -57,6 +62,7 @@ class CourseStore {
 
 decorate(CourseStore, {
   courses: observable,
+  loading: observable,
 });
 
 const courseStore = new CourseStore();

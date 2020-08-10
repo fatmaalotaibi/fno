@@ -6,6 +6,7 @@ import { Logo, ThemeButton, NavItem } from "../styles";
 
 //Components
 import SignupButton from "../components/Buttons/SignupButton";
+import SigninButton from "./Buttons/SigninButton";
 
 const NavBar = ({ handeleToggle, currentTheme }) => {
   return (
@@ -28,6 +29,8 @@ const NavBar = ({ handeleToggle, currentTheme }) => {
         </Logo>
 
         <ul className="navbar-nav ml-auto mt-2 mt-rg-0">
+          <SignupButton />
+          <SigninButton />
           <NavItem className="nav-item" to="/institutes">
             Institutes
           </NavItem>
@@ -39,7 +42,7 @@ const NavBar = ({ handeleToggle, currentTheme }) => {
             {" "}
             Courses{" "}
           </NavItem>
-          <SignupButton />
+
           <ThemeButton className="nav-item" onClick={handeleToggle}>
             {currentTheme === "light" ? "Dark" : "Light"} Mode
           </ThemeButton>

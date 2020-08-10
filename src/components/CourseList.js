@@ -7,7 +7,6 @@ import { ListWrapper } from "../styles";
 //components
 import CourseItem from "./CourseItem";
 import SearchBar from "./SearchBar";
-import AddButton from "./Buttons/addButton";
 
 //stores
 import courseStore from "../Stores/courseStore";
@@ -22,7 +21,6 @@ const CourseList = ({ courses }) => {
     <>
       <SearchBar setQuery={setQuery} />
       <ListWrapper className="row">{courseList} </ListWrapper>
-      <AddButton />
     </>
   );
 };

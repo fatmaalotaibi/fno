@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import { observer } from "mobx-react";
 
 // Components
-import InstituteItem from "./InstituteItem";
+import AddButton from "../Buttons/AddButton";
 import SearchBar from "../SearchBar";
+import InstituteItem from "./InstituteItem";
 
 // Styles
 import { Title } from "../../styles";
@@ -29,6 +30,7 @@ const InstituteList = ({ courses }) => {
       <Title>Institutes</Title>
       <SearchBar setQuery={setQuery} />
       {instituteList}
+      <AddButton />
     </div>
   );
 };

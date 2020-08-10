@@ -18,9 +18,10 @@ const customStyles = {
   },
 };
 
-const CoursesModal = ({ isOpen, closeModal, oldCourse }) => {
+const CoursesModal = ({ instituteId, isOpen, closeModal, oldCourse }) => {
   const [course, setCourse] = useState(
     oldCourse ?? {
+      instituteId,
       name: "",
       price: 0,
       description: "",

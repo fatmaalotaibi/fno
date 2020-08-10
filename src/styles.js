@@ -60,13 +60,17 @@ export const DeleteButtonStyled = styled.p`
   color: ${(props) => props.theme.red};
 `;
 export const DetailWrapper = styled.div`
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-
+  margin: 20px;
   img {
-    width: 30%;
-    height: 30%;
+    width: 200px;
+    height: 200px;
+  }
+  p {
+    text-align: left;
+
+    &.cours-price {
+      color: ${(props) => props.theme.gold};
+    }
   }
 `;
 export const SearchBarStyled = styled.input`

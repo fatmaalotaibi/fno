@@ -1,5 +1,6 @@
 import React from "react";
-import { Link, Redirect, useParams } from "react-router-dom";
+import { observer } from "mobx-react";
+import { useParams, Redirect } from "react-router-dom";
 
 //Styles
 import { DetailWrapper } from "../../styles";
@@ -9,22 +10,35 @@ import instituteStore from "../../Stores/instituteStore";
 
 //Components
 import CourseList from "../CourseList";
+import AddButton from "../Buttons/AddButton";
+import UpdateButton from "../Buttons/UpdateButton";
+import DeleteButton from "../Buttons/DeleteButton";
 
 const InstituteDetail = () => {
   const { instituteSlug } = useParams();
+
   const institute = instituteStore.institutes.find(
     (_institute) => _institute.slug === instituteSlug
   );
 
+  if (!institute) return <Redirect to="/institutes" />;
+
   return (
-    <>
-      <DetailWrapper>
-        <h4>{institute.name}</h4>
-        <img src={institute.image} />
-      </DetailWrapper>
-      <CourseList courses={institute.courses} />
-    </>
+    <div className="row">
+      <div className="container">
+        <DetailWrapper className="col-12">
+          <h1>{institute.name}</h1>
+          <img src={institute.image} />
+          <UpdateButton />
+        </DetailWrapper>
+      </div>
+      <div className="col-12">
+        <CourseList courses={institute.courses} />
+        <AddButton instituteId={institute.id} />
+        <DeleteButton instituteId={institute.id} />
+      </div>
+    </div>
   );
 };
 
-export default InstituteDetail;
+export default observer(InstituteDetail);
