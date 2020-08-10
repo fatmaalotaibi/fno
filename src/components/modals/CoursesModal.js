@@ -70,7 +70,7 @@ const CoursesModal = ({ isOpen, closeModal, oldCourse }) => {
               min="35"
               className="form-control"
               name="price"
-              onChange={handleImage}
+              onChange={handleChange}
               value={course.price}
             />
           </div>

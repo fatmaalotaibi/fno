@@ -12,7 +12,7 @@ import AddButton from "./Buttons/addButton";
 //stores
 import courseStore from "../Stores/courseStore";
 
-const CoursesList = ({ createCourse }) => {
+const CourseList = ({ courses }) => {
   const [query, setQuery] = useState("");
 
   const courseList = courseStore.courses
@@ -22,9 +22,9 @@ const CoursesList = ({ createCourse }) => {
     <>
       <SearchBar setQuery={setQuery} />
       <ListWrapper className="row">{courseList} </ListWrapper>
-      <AddButton createCourse={createCourse} />
+      <AddButton />
     </>
   );
 };
 
-export default observer(CoursesList);
+export default observer(CourseList);

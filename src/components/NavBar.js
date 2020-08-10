@@ -26,7 +26,11 @@ const NavBar = ({ handeleToggle, currentTheme }) => {
         <Logo className="navbar-brand" to="/">
           <img src={logo} />
         </Logo>
+
         <ul className="navbar-nav ml-auto mt-2 mt-rg-0">
+          <NavItem className="nav-item" to="/institutes">
+            Institutes
+          </NavItem>
           <NavItem
             className="nav-item"
             to="/courses"
