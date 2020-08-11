@@ -16,15 +16,16 @@ class CourseStore {
     }
   };
 
-  createCourse = async (newCourse) => {
+  createCourse = async (newCourse, institute) => {
     try {
       const formData = new FormData();
       for (const key in newCourse) formData.append(key, newCourse[key]);
       const res = await axios.post(
-        `http://localhost:8000/institutes/${newCourse.instituteId}/courses`,
+        `http://localhost:8000/institutes/${institute.id}/courses`,
         formData
       );
       this.courses.push(res.data);
+      institute.courses.push({ id: res.data.id });
     } catch (error) {
       console.log("CourseStore -> creatCourse -> error", error);
     }
@@ -58,6 +59,9 @@ class CourseStore {
       console.log("CourseStore -> deleteCourse -> error", error);
     }
   };
+
+  getCourseById = (courseId) =>
+    this.courses.find((course) => course.id === courseId);
 }
 
 decorate(CourseStore, {

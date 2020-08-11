@@ -1,9 +1,15 @@
 import React from "react";
+import { observer } from "mobx-react";
+import { Redirect } from "react-router";
+
+//Stores
+import authStore from "../Stores/authStore";
 
 //styles
 import { Description, Title, BallerinaImage } from "../styles";
 
 const Home = () => {
+  // if (!authStore.user) return <Redirect to="/signin" />;
   return (
     <>
       <Title> Secret Art Courses </Title>
@@ -16,4 +22,5 @@ const Home = () => {
     </>
   );
 };
-export default Home;
+
+export default observer(Home);

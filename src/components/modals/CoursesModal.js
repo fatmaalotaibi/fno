@@ -18,10 +18,9 @@ const customStyles = {
   },
 };
 
-const CoursesModal = ({ instituteId, isOpen, closeModal, oldCourse }) => {
+const CoursesModal = ({ institute, isOpen, closeModal, oldCourse }) => {
   const [course, setCourse] = useState(
     oldCourse ?? {
-      instituteId,
       name: "",
       price: 0,
       description: "",
@@ -38,7 +37,7 @@ const CoursesModal = ({ instituteId, isOpen, closeModal, oldCourse }) => {
   };
   const handleSubmit = (event) => {
     event.preventDefault();
-    courseStore[oldCourse ? "updateCourse" : "createCourse"](course);
+    courseStore[oldCourse ? "updateCourse" : "createCourse"](course, institute);
     closeModal();
   };
 

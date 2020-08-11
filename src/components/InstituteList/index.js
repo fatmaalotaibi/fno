@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { observer } from "mobx-react";
+import { Redirect } from "react-router";
 
 // Components
 import AddButton from "../Buttons/AddButton";
@@ -11,6 +12,7 @@ import { Title } from "../../styles";
 
 // Stores
 import instituteStore from "../../Stores/instituteStore";
+import authStore from "../../Stores/authStore";
 
 const InstituteList = ({ courses }) => {
   const [query, setQuery] = useState("");
@@ -24,6 +26,9 @@ const InstituteList = ({ courses }) => {
     .map((institute) => (
       <InstituteItem institute={institute} key={institute.id} />
     ));
+
+  if (!authStore.user || authStore.user.role !== "admin")
+    return <Redirect to="/" />;
 
   return (
     <div className="container">

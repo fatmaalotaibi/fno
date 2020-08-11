@@ -64,7 +64,7 @@ const SigninModal = ({ isOpen, closeModal }) => {
           />
         </div>
         <CreateButtonStyled className="btn float-right" type="submit">
-          Sign up
+          Sign in
         </CreateButtonStyled>
       </form>
     </Modal>

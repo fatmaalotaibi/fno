@@ -7,6 +7,7 @@ import { DetailWrapper } from "../../styles";
 
 //Stores
 import instituteStore from "../../Stores/instituteStore";
+import courseStore from "../../Stores/courseStore";
 
 //Components
 import CourseList from "../CourseList";
@@ -15,6 +16,10 @@ import UpdateButton from "../Buttons/UpdateButton";
 import DeleteButton from "../Buttons/DeleteButton";
 
 const InstituteDetail = () => {
+  const courses = institute.courses
+    .map((course) => courseStore.getCourseById(course.id))
+    .filter((course) => course);
+
   const { instituteSlug } = useParams();
 
   const institute = instituteStore.institutes.find(
@@ -33,8 +38,8 @@ const InstituteDetail = () => {
         </DetailWrapper>
       </div>
       <div className="col-12">
-        <CourseList courses={institute.courses} />
-        <AddButton instituteId={institute.id} />
+        <CourseList courses={courses} />
+        <AddButton instituteId={institute} />
         <DeleteButton instituteId={institute.id} />
       </div>
     </div>

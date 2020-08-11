@@ -2,11 +2,15 @@ import React from "react";
 
 //styles
 import logo from "../images.png";
-import { Logo, ThemeButton, NavItem } from "../styles";
+import { Logo, ThemeButton, NavItem, UsernameStyled } from "../styles";
+import { FiLogOut } from "react-icons/fi";
 
 //Components
 import SignupButton from "../components/Buttons/SignupButton";
 import SigninButton from "./Buttons/SigninButton";
+
+//Stores
+import authStore from "../Stores/authStore";
 
 const NavBar = ({ handeleToggle, currentTheme }) => {
   return (
@@ -27,21 +31,37 @@ const NavBar = ({ handeleToggle, currentTheme }) => {
         <Logo className="navbar-brand" to="/">
           <img src={logo} />
         </Logo>
+        {authStore.user && (
+          <>
+            <UsernameStyled>
+              Hello, {authStore.UsernameStyled.username}
+            </UsernameStyled>
+            <FiLogOut onClick={authStore.signout} size="2em" color="red" />
+          </>
+        )}
+        {authStore.user?.role === "admin" && (
+          <>
+            <NavItem
+              className="nav-item"
+              to="/institutes"
+              style={{ margin: 10, float: "right" }}
+            >
+              Institutes
+            </NavItem>
+            <NavItem
+              className="nav-item"
+              to="/courses"
+              style={{ margin: 10, float: "right" }}
+            >
+              {" "}
+              Courses{" "}
+            </NavItem>
+          </>
+        )}
 
         <ul className="navbar-nav ml-auto mt-2 mt-rg-0">
-          <SignupButton />
           <SigninButton />
-          <NavItem className="nav-item" to="/institutes">
-            Institutes
-          </NavItem>
-          <NavItem
-            className="nav-item"
-            to="/courses"
-            style={{ margin: 10, float: "right" }}
-          >
-            {" "}
-            Courses{" "}
-          </NavItem>
+          <SignupButton />
 
           <ThemeButton className="nav-item" onClick={handeleToggle}>
             {currentTheme === "light" ? "Dark" : "Light"} Mode

@@ -12,8 +12,13 @@ const DeleteButton = ({ courseId, instituteId }) => {
   const history = useHistory();
 
   const handleDelete = () => {
-    if (courseId) courseStore.deleteCourse(courseId);
-    else instituteStore.deleteInstitute(instituteId);
+    if (courseId) {
+      courseStore.deleteCourse(courseId);
+      history.push("/courses");
+    } else {
+      instituteStore.deleteInstitute(instituteId);
+      history.push("/institutes");
+    }
   };
 
   return (

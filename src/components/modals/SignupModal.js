@@ -25,6 +25,7 @@ const SignupModal = ({ isOpen, closeModal }) => {
     username: "",
     password: "",
     email: "",
+    rolr: "institute",
   });
 
   const handleChange = (event) => {
